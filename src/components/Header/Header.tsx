@@ -21,7 +21,7 @@ export default function Header({ filters, filter, onFilterChange }: Props) {
 
   return (
     <header className={styles.header}>
-      <button onClick={toggleDarkMode}>
+      <button className={styles.toggle} onClick={toggleDarkMode}>
         {darkMode ? <BsFillMoonFill /> : <BsFillSunFill />}
       </button>
       <nav>

@@ -26,11 +26,11 @@ export default function Todo({ todo, onDelete, onUpdate }: Props) {
       <input
         className={styles.checkbox}
         type='checkbox'
-        id={`checkbox${id}`}
+        id={id}
         checked={status === "completed"}
         onChange={handleChange}
       />
-      <label className={styles.text} htmlFor={`checkbox${id}`}>
+      <label className={styles.text} htmlFor={id}>
         {text}
       </label>
       <span className={styles.icon}>

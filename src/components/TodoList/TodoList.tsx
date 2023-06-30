@@ -6,11 +6,13 @@ import styles from "./TodoList.module.css";
 
 type Props = { filter: string };
 
+const loadTodosFromLocalStorage = (): TodoType[] => {
+  console.log("loadTodosFromLocalStorage");
+  return JSON.parse(localStorage.getItem("todos") ?? "[]");
+};
+
 export default function TodoList({ filter }: Props) {
-  const [todos, setTodos] = useState<TodoType[]>([
-    { id: "123", text: "shopping", status: "active" },
-    { id: "124", text: "study english", status: "active" },
-  ]);
+  const [todos, setTodos] = useState<TodoType[]>(loadTodosFromLocalStorage);
 
   const handleAdd = (addedTodo: TodoType) => {
     setTodos([...todos, addedTodo]);
@@ -28,7 +30,7 @@ export default function TodoList({ filter }: Props) {
     filter === "all" ? todos : todos.filter((cV) => cV.status === filter);
 
   useEffect(() => {
-    console.log(todos, "@todos");
+    localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
   return (
